@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements SurfaceHolder.Callback{
-    String path = "/sdcard0/bbb.3gp";
+    String path = "sdcard/bbb.3gp";
     Button play_Button;
     Button pause_Button;
     boolean isPause = false;
@@ -38,9 +38,11 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
                 if (isPause) {
                     mediaPlayer.start();
                     isPause = false;
+                    pause_Button.setText("继续");
                 } else {
                     mediaPlayer.pause();
                     isPause = true;
+                    pause_Button.setText("暂停");
                 }
             }
         });
@@ -78,10 +80,10 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
         try{
             mediaPlayer.setDataSource(strPath);
             mediaPlayer.prepare();
+            mediaPlayer.start();
         }
         catch (Exception e){
             e.printStackTrace();
         }
-        mediaPlayer.start();
     }
 }
